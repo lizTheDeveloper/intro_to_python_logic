@@ -25,7 +25,7 @@ dinner_rolls_recipe = {
     "butter": 0.1  # kg
 }
 
-def calculate_total_cost(recipe):
+def calculate_total_cost(recipe, ingredient_costs):
     recipe_name = recipe["recipe_name"]
 
     total_cost = 0
@@ -38,4 +38,24 @@ def calculate_total_cost(recipe):
     print(f"Total cost to make {recipe_name}: ${total_cost:.2f}")
     return total_cost
 
-total_cost = calculate_total_cost(dinner_rolls_recipe)
+def change_price(ingredient_costs, ingredient_name, change_percent):
+
+    ## update the ingredient_costs dictionary
+    ## multiply the ingredient's current cost by change_percent
+    ingredient_costs[ingredient_name] = ingredient_costs[ingredient_name] * (1 + change_percent)
+
+def change_all_prices(ingredient_costs, change_percent):
+    new_ingredient_costs = ingredient_costs.copy()
+
+    for ingredient,cost in new_ingredient_costs.items():
+        change_price(new_ingredient_costs,ingredient,change_percent)
+
+    return new_ingredient_costs
+
+
+markup_20 = change_all_prices(ingredient_costs, 1.20)
+markdown_20 = change_all_prices(ingredient_costs, -0.20)
+
+total_cost = calculate_total_cost(dinner_rolls_recipe, ingredient_costs)
+markup_total_cost = calculate_total_cost(dinner_rolls_recipe, markup_20)
+markdown_total_cost = calculate_total_cost(dinner_rolls_recipe, markdown_20)

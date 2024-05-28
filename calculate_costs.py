@@ -59,3 +59,18 @@ markdown_20 = change_all_prices(ingredient_costs, -0.20)
 total_cost = calculate_total_cost(dinner_rolls_recipe, ingredient_costs)
 markup_total_cost = calculate_total_cost(dinner_rolls_recipe, markup_20)
 markdown_total_cost = calculate_total_cost(dinner_rolls_recipe, markdown_20)
+
+
+import random 
+
+a_random_number = random.randint()
+
+
+# Create a fourth function called random_fluctuations that:
+
+# requires an ingredient_cost dictionary
+# requires a float, max_rise
+# requires another float, max_fall
+# makes a copy of that dictionary
+# uses change_price to change each price by a random % value, between max_rise and max_fall
+# returns the copy of that dictionary
